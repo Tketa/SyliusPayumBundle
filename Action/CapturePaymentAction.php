@@ -72,6 +72,7 @@ final class CapturePaymentAction extends GatewayAwareAction
                 ));
                 $details = $payment->getDetails();
                 $details['shippingAddress'] = $order->getShippingAddress();
+                $details['transactionId'] = $order->getId();
                 $payumPayment->setDetails($details);
 
                 $this->gateway->execute($convert = new Convert($payumPayment, 'array', $request->getToken()));
